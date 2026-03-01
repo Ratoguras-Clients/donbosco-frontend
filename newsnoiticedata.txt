@@ -1,0 +1,242 @@
+"use client";
+import { useState, useMemo, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
+import { Search, LayoutGrid, LayoutList, Inbox } from "lucide-react";
+import { NewsNoticeCard } from "@/components/ui/NewsNoticeCard";
+import Image from "next/image";
+import Link from "next/link";
+
+import Preview from "@/components/ui/Editor";
+import { AppPagination } from "@/components/ui/AppPagination";
+import { NoticeApiResponse } from "@/lib/types";
+import { NewsApiResponse } from "@/lib/data/news-notices/news";
+
+interface Props {
+  news: NewsApiResponse;
+  notices: NoticeApiResponse;
+}
+
+// const categories = ["News", "Notice"] as const;
+export function NewsNoticesContent({ news, notices }: Props) {
+  // const searchParams = useSearchParams();
+  // const filterParam = searchParams.get("filter");
+  const [search, setSearch] = useState("");
+  // const [activeCategory, setActiveCategory] =
+  //   useState<(typeof categories)[number]>("News");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("list"); // ← Changed default to "list"
+  // const [currentPage, setCurrentPage] = useState(items.current_page || 1);
+  // const [lastPage, setLastPage] = useState(items.last_page || 1);
+  // const [total, setTotal] = useState(items.total || 0);
+  // const [perPage, setPerPage] = useState(items.per_page || 10);
+  // const [events, setEvents] = useState(items.data);
+  // const handlePaginate = async (page: number) => {
+  //   setCurrentPage(page);
+  //   const { data, last_page, per_page, current_page, total } =
+  //   await getPaginatedNewsNotices(page);
+  //   setEvents(data);
+  //   setLastPage(last_page);
+  //   setPerPage(per_page);
+  //   setTotal(total);
+  //   setCurrentPage(current_page);
+  // };
+
+  // const filtered = useMemo(
+  //   () =>
+  //     events?.filter((item) => {
+  //       const matchSearch =
+  //         item.title.toLowerCase().includes(search.toLowerCase()) ||
+  //         item.summary.toLowerCase().includes(search.toLowerCase());
+  //       const matchCategory =
+  //         activeCategory === "All" || item.category === activeCategory;
+  //       return matchSearch && matchCategory;
+  //     }),
+  //   [events, search, activeCategory],
+  // );
+
+  // useEffect(() => {
+  //   if (filterParam) {
+  //     const categoryMap: Record<string, (typeof categories)[number]> = {
+  //       news: "News",
+  //       notice: "Notice",
+  //     };
+  //     const mappedCategory = categoryMap[filterParam.toLowerCase()];
+  //     if (mappedCategory) {
+  //       setActiveCategory(mappedCategory);
+  //     }
+  //   }
+  // }, [filterParam]);
+
+  return (
+    <section className="py-20 bg-white min-h-[60vh]">
+      <div className="max-w-7xl px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Controls */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col lg:flex-row gap-4 mb-10"
+        >
+          {/* Search */}
+          <div className="relative flex-1 max-w-sm">
+            <Search
+              size={16}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            />
+            <input
+              type="text"
+              placeholder="Search news & notices..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all"
+            />
+          </div>
+
+          {/* Category filter */}
+          {/* <div className="flex items-center gap-2 flex-wrap flex-1">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                  activeCategory === cat
+                    ? "bg-primary text-white shadow-md shadow-primary/20"
+                    : "bg-gray-100 text-text-muted hover:bg-primary/10 hover:text-primary"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div> */}
+
+          {/* View toggle */}
+          <div className="flex items-center gap-1 bg-light-primary rounded-xl p-1 self-start">
+            <button
+              onClick={() => setViewMode("grid")}
+              className={`p-2 rounded-lg transition-all ${
+                viewMode === "grid"
+                  ? "bg-white shadow-sm text-primary"
+                  : "text-text-muted"
+              }`}
+            >
+              <LayoutGrid size={16} />
+            </button>
+            <button
+              onClick={() => setViewMode("list")}
+              className={`p-2 rounded-lg transition-all ${
+                viewMode === "list"
+                  ? "bg-white shadow-sm text-primary"
+                  : "text-text-muted"
+              }`}
+            >
+              <LayoutList size={16} />
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Count */}
+        <p className="text-sm text-text-muted mb-8">
+          Showing{" "}
+          <span className="font-semibold text-primary">{filtered?.length}</span>{" "}
+          {filtered?.length === 1 ? "item" : "items"}
+        </p>
+
+        {/* Results */}
+        {filtered?.length > 0 ? (
+          <div
+            className={
+              viewMode === "grid"
+                ? "grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+                : "flex flex-col gap-6"
+            }
+          >
+            {filtered.map((item, i) =>
+              viewMode === "grid" ? (
+                <Link
+                  key={item.id}
+                  href={`/news-notices/${item.category.toLowerCase()}/${item.slug ?? item.id}`}
+                >
+                  <NewsNoticeCard item={item} index={i} />
+                </Link>
+              ) : (
+                // List view
+                <Link
+                  href={`/news-notices/${item.category.toLowerCase()}/${item.slug ?? item.id}`}
+                >
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.4 }}
+                    className="group flex gap-6 bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg hover:border-primary/10 transition-all duration-300"
+                  >
+                    {item.image && (
+                      <div className="relative overflow-hidden w-48 flex-shrink-0">
+                        <Image
+                          src={
+                            item.image ||
+                            "https://cni.ratoguras.com/uploads/images/1771322684_modified-image-1.webp"
+                          }
+                          alt={item.title}
+                          fill
+                          className="h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-col justify-center py-5 pr-6 gap-2 flex-1">
+                      <span className="text-xs font-bold text-accent uppercase tracking-wider">
+                        {item.category}
+                      </span>
+                      <h3 className="font-bold text-gray-800 group-hover:text-primary transition-colors leading-snug">
+                        {item.title}
+                      </h3>
+                      {/* {item.summary} */}
+                      <div className="text-sm text-text-muted line-clamp-2">
+                        <Preview
+                          value={
+                            item?.summary?.length! > 20
+                              ? item?.summary?.substring(0, 170) + " ..."
+                              : item?.summary || ""
+                          }
+                        />
+                      </div>
+                      {/* {item?.summary && <Preview value={item.summary} />} */}
+
+                      {/* </p> */}
+                      <p className="text-xs text-text-muted mt-1">
+                        {item.date}
+                      </p>
+                    </div>
+                  </motion.div>
+                </Link>
+              ),
+            )}
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-24 text-text-muted"
+          >
+            <Inbox size={44} className="mx-auto mb-4 text-gray-300" />
+            <p className="font-semibold text-gray-500">No items found</p>
+            <p className="text-sm mt-1">Try a different search or category</p>
+          </motion.div>
+        )}
+      </div>
+      {total > perPage && (
+        <div className="flex justify-center mt-8">
+          <AppPagination
+            currentPage={currentPage}
+            lastPage={lastPage}
+            onPageChange={(page) => {
+              handlePaginate(page);
+            }}
+          />
+        </div>
+      )}
+    </section>
+  );
+}
+
+
