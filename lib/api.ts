@@ -83,8 +83,18 @@ export async function getMessageById(id: number): Promise<Message | undefined> {
   return allMessages.find((m) => m.id === id);
 }
 export async function getMediaHero(): Promise<HeroSlide> {
-  const data = await api.get("/media-hero");
-  return data.data.data;
+  try {
+    const data = await api.get("/media-hero");
+    return data.data.data;
+  } catch {
+    return {
+      id: 0,
+      title: "Media Gallery",
+      subtitle:
+        "Photos, videos, and media resources from Don Bosco events and activities",
+      image: "",
+    };
+  }
 }
 export async function getMessageHero(): Promise<HeroSlide> {
   try {

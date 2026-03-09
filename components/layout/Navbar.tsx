@@ -129,6 +129,7 @@ export function Navbar() {
           { label: "Video Gallery", href: "/media/videos" },
         ],
       },
+      { label: "Admissions", href: "/admissions" },
       { label: "FAQ", href: "/faq" },
     ],
     [sisterOrgs, otherOrgs],

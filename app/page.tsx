@@ -4,6 +4,7 @@ import { MissionSection } from "@/components/sections/MissionSection";
 import { NoticesSection } from "@/components/sections/NoticesSection";
 import { NewsSection } from "@/components/sections/NewsSection";
 import { FaqSection } from "@/components/sections/FaqSection";
+import { AdmissionsSection } from "@/components/sections/AdmissionsSection";
 import {
   getFaqs,
   getHeroSlides,
@@ -29,6 +30,7 @@ export default async function HomePage() {
       <MessageSection messages={messages} />
       <NoticesSection notices={notices as any} />
       <NewsSection news={news.data as any} />
+      <AdmissionsSection />
       <FaqSection faqs={faqs} />
     </main>
   );
