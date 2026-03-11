@@ -7,11 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavDropdown, type DropdownItem } from "./NavDropdown";
 import Image from "next/image";
 import type { Organization } from "@/lib/types";
-
-
-
-
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,7 +33,6 @@ export function Navbar() {
           { label: "Mission & Values", href: "/about#mission" },
           { label: "Our Journey", href: "/about#journey" },
           { label: "Our Team", href: "/about/team" },
-          // { label: "Messages", href: "/messages" },
           { label: "Events", href: "/about/events" },
           { label: "Blogs", href: "/about/blogs" },
         ],
@@ -63,14 +57,14 @@ export function Navbar() {
       { label: "Admissions", href: "/admissions" },
       { label: "FAQ", href: "/faq" },
     ],
-    [sisterOrgs, otherOrgs],
+    [],
   );
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5 py-2"
-          : "bg-white shadow-xl py-4"
+        ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5 py-2"
+        : "bg-white shadow-xl py-4"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -111,8 +105,8 @@ export function Navbar() {
             <Link
               href="/contact"
               className={`ml-3 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${scrolled
-                  ? "bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20"
-                  : "bg-white text-primary hover:bg-white/90 shadow-lg shadow-black/10"
+                ? "bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20"
+                : "bg-white text-primary hover:bg-white/90 shadow-lg shadow-black/10"
                 }`}
             >
               Contact Us
