@@ -1,12 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote, ArrowRight } from "lucide-react";
+import { Quote } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import type { Message } from "@/lib/types";
-import { useEffect, useState } from "react";
-import { getMessages } from "@/lib/api";
+
 import Preview from "../ui/Editor";
 
 interface Props {
@@ -16,7 +14,6 @@ interface Props {
 export function MessageSection({ messages }: Props) {
   const message = messages[0];
   if (!messages) return null;
-
   return (
     <section
       id="message"
@@ -90,18 +87,7 @@ export function MessageSection({ messages }: Props) {
               </div>
             </div>
 
-            {/* <div className="pt-4 lg:pt-6 border-t border-gray-100">
-              <Link
-                href="/messages"
-                className="group inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-primary rounded-xl transition-all hover:bg-primary-dark shadow-md shadow-primary/20"
-              >
-                Read Full Message
-                <ArrowRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-            </div> */}
+
           </motion.div>
         </div>
       </div>

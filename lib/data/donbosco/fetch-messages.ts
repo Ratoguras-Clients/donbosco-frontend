@@ -50,15 +50,14 @@ export async function fetchMessages(
   organizationId: number = 1,
 ): Promise<Message[]> {
   const endpoint = `/messages/${organizationId}`;
-  const fullUrl = `${process.env.NEXT_PUBLIC_API_URL }${endpoint}`;
+  const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}${endpoint}`;
 
   try {
     const response = await api.get<MessageApiResponse>(endpoint);
     const msgs = response.data.data;
-    return msgs.map(transformToMessage);
+    return msgs?.map(transformToMessage) ?? [];
   } catch (error: any) {
     console.error(`[fetchMessages] ❌ Failed to fetch from ${fullUrl}`);
-
     if (error.response) {
       console.error(
         `[fetchMessages] HTTP Error ${error.response.status}: ${error.response.statusText}`,
