@@ -32,6 +32,9 @@ api.interceptors.response.use(
           case 404:
             toast.error("Not Found: The requested resource could not be found.");
             break;
+          case 429:
+            window.location.href = "/rate-limited";
+            break;
           case 500:
             toast.error("Server Error: Internal server error. Please try again later.");
             break;
