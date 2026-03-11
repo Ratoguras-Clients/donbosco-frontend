@@ -152,7 +152,7 @@ export async function getOrganizationMissionsData(
 
 export async function getNotices() {
   const data = await fetchCNINotices();
-  return data.data.map((item) => ({
+  return data?.data?.map((item) => ({
     ...item,
     image: item.image || defaultNoticeImg,
   }));

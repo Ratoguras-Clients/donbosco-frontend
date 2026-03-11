@@ -38,7 +38,7 @@ function transformNoticeApiToNotice(
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-  return apiNotices.map((item) => {
+  return apiNotices?.map((item) => {
     // Try to parse the date safely
     let noticeDate = new Date(item.date);
     if (isNaN(noticeDate.getTime())) {
@@ -60,7 +60,7 @@ function transformNoticeApiToNotice(
       slug: item.slug,
       isNew,
     };
-  });
+  }) ?? [];
 }
 
 /**

@@ -10,7 +10,7 @@ interface Props {
 
 export async function generateStaticParams() {
   const items = await getBlogs();
-  return items.data?.map((item) => ({ id: item.id.toString() }));
+  return items?.data?.map((item) => ({ id: item.id.toString() }));
 }
 
 export async function generateMetadata({ params }: Props) {
