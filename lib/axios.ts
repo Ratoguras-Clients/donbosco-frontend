@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://dbs-website.ratoguras.com/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -15,7 +15,7 @@ api.interceptors.response.use(
     // Check if we are in a browser environment
     if (typeof window !== "undefined") {
       const { toast } = require("sonner");
-      
+
       if (!error.response) {
         toast.error("Network Error: Please check your internet connection.");
       } else {
