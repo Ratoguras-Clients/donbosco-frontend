@@ -8,10 +8,7 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-export async function generateStaticParams() {
-  const items = await getEvents();
-  return items.data.map((item) => ({ id: item.id.toString() }));
-}
+
 
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
