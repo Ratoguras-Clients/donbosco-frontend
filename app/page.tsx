@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { HeroCarousel } from "@/components/sections/HeroCarousel";
 import { MessageSection } from "@/components/sections/MessageSection";
 import { MissionSection } from "@/components/sections/MissionSection";

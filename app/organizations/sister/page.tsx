@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { PageHero } from "@/components/layout/PageHero";
 import { SisterOrgsContent } from "./_components/SisterOrgsContent";
 import { getOrganizations } from "@/lib/api";

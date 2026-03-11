@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout/PageHero";
 import { getMessages, getMessageById } from "@/lib/api";
