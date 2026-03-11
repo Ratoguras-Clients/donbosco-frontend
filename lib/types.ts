@@ -1,7 +1,7 @@
 export interface HeroSlide {
   id: number;
   title: string;
-  subtitle: string;
+  content: string;
   image: string;
 }
 

@@ -1,9 +1,8 @@
+export const dynamic = "force-dynamic";
 import { PageHero } from "@/components/layout/PageHero";
 import { getBlogs } from "@/lib/api";
 import { BlogsContent } from "./_components/BlogsContent";
 import { Suspense } from "react";
-
-export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Blogs | Don Bosco",

@@ -61,11 +61,7 @@ export function NavDropdown({ label, href, items, scrolled }: Props) {
     >
       <Link
         href={href}
-        className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10 ${
-          scrolled
-            ? "text-gray-700 hover:text-primary hover:bg-primary/5"
-            : "text-white"
-        }`}
+        className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10 text-black `}
       >
         {label}
         <ChevronDown

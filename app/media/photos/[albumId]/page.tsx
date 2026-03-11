@@ -8,20 +8,6 @@ interface Props {
   params: Promise<{ albumId: string }>;
 }
 
-// export async function generateStaticParams() {
-//   const albums = await getPhotoAlbums();
-//   return albums.data.map((album: Album) => ({ albumId: album.id }));
-// }
-
-// export async function generateMetadata({ params }: Props) {
-//   const { albumId } = await params;
-//   const album = await getAlbumBySlug(albumId);
-//   if (!album) return {};
-//   return {
-//     title: `${album.title} | Photo Gallery | Don Bosco`,
-//     description: album.description,
-//   };
-// }
 
 export default async function PhotoGalleryPage({ params }: Props) {
   const { albumId } = await params;

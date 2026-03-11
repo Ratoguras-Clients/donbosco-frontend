@@ -94,33 +94,7 @@ export function Navbar() {
           { label: "Notices", href: "/news-notices?filter=notice" },
         ],
       },
-      // {
-      //   label: "Organizations",
-      //   href: "/organizations",
-      //   dropdown: [
-      //     {
-      //       label: "Sister Organizations",
-      //       href: "/organizations/sister",
-      //       subItems:
-      //         sisterOrgs.length > 0 &&
-      //         sisterOrgs.map((org) => ({
-      //           label: org.name,
-      //           href: `/organizations/sister/${org.slug}`,
-      //         })),
-      //     },
-      //     {
-      //       label: "Other Organizations",
-      //       href: "/organizations/other",
-      //       subItems:
-      //         otherOrgs.length > 0 &&
-      //         otherOrgs.map((org) => ({
-      //           label: org.name,
-      //           href: org.website || "#",
-      //           external: true,
-      //         })),
-      //     },
-      //   ],
-      // },
+
       {
         label: "Media",
         href: "/media",
@@ -140,7 +114,7 @@ export function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5 py-2"
-          : "bg-transparent py-4"
+          : "bg-white shadow-xl py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,11 +144,9 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href!}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10 ${
-                    scrolled
-                      ? "text-gray-700 hover:text-primary hover:bg-primary/5"
-                      : "text-white/90 hover:text-white"
-                  }`}
+                  className={`px-4 py-2 text-black rounded-lg 
+                       hover:text-primary hover:bg-primary/5
+                      text-sm font-medium transition-all duration-300  `}
                 >
                   {item.label}
                 </Link>

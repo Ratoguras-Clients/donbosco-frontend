@@ -56,7 +56,6 @@ export async function fetchFaqs(organizationId: number = 1): Promise<Faq[]> {
   const endpoint = `/faqs/${organizationId}`;
   const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}${endpoint}`;
 
-  // console.log(`[fetchFaqs] Fetching from: ${fullUrl}`);
 
   try {
     const response = await api.get<FaqApiResponse>(endpoint);

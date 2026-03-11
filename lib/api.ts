@@ -1,68 +1,43 @@
 // Import from organized data structure
 import api from "./axios";
-import { fetchMessages } from "./data/cni/fetch-messages";
-import { teamMembers, staff } from "./data/cni/team";
+import { fetchMessages } from "./data/donbosco/fetch-messages";
 import {
   fetchCNITeamMembers,
   fetchCNIStaff,
   fetchOrgTeamMembers,
-} from "./data/cni/fetch-teams";
-import { stats, aboutStats } from "./data/cni/stats";
-import { faqs, fetchFaqs } from "./data/cni/faqs";
-import { fetchCNIJourney, fetchJourneyByOrgId } from "./data/cni/journey";
-import { StaticImageData } from "next/image";
-import defaultNewsImg from "@/public/news.png";
+} from "./data/donbosco/fetch-teams";
+import { fetchFaqs } from "./data/donbosco/faqs";
+import { fetchCNIJourney, fetchJourneyByOrgId } from "./data/donbosco/journey";
 import defaultNoticeImg from "@/public/notice.png";
 
-type ImageType = string | StaticImageData;
-
-import {
-  fetchCNINews,
-  fetchNewsByOrgId,
-  NewsApiResponse,
-} from "./data/news-notices/news";
+import { fetchCNINews, fetchNewsByOrgId } from "./data/news-notices/news";
 
 import { videos } from "./data/media";
-
-import {
-  sisterOrganizations,
-  fetchSisterOrganizations,
-} from "./data/organizations/sister";
-
-import { fetchOtherOrganizations } from "./data/organizations/other/fetch-other-orgs";
 
 import type {
   HeroSlide,
   Message,
   Mission,
-  Notice,
-  Organization,
-  NewsItem,
   Faq,
   Stat,
   TeamMember,
   AboutStat,
-  AlbumApiResponse,
   AlbumsApiResponse,
   Video,
   Photo,
   Staff,
-  OrgNews,
   OrgNotice,
   OrgFaq,
   OrgTeamMember,
   JourneyMilestone,
-  OtherOrganization,
   BlogItem,
   EventItem,
-  HomeMission,
   HomeArrayMission,
   ArrayMission,
   EventApiResponse,
   BlogsApiResponse,
   NewsNoticeCategory,
 } from "./types";
-import { fetchSisterOrganizationBySlug } from "./data/organizations/sister/organizations";
 import {
   fetchCNINotices,
   fetchNoticesByOrgId,
@@ -90,7 +65,7 @@ export async function getMediaHero(): Promise<HeroSlide> {
     return {
       id: 0,
       title: "Media Gallery",
-      subtitle:
+      content:
         "Photos, videos, and media resources from Don Bosco events and activities",
       image: "",
     };
@@ -104,7 +79,7 @@ export async function getMessageHero(): Promise<HeroSlide> {
     return {
       id: 0,
       title: "Leadership Messages",
-      subtitle: "Words of guidance and inspiration from our school leadership",
+      content: "Words of guidance and inspiration from our school leadership",
       image: "",
     };
   }
@@ -117,7 +92,7 @@ export async function getFaqHero(): Promise<HeroSlide> {
     return {
       id: 0,
       title: "Frequently Asked Questions",
-      subtitle:
+      content:
         "Everything you need to know about Don Bosco, membership benefits, and how to get involved.",
       image: "",
     };
@@ -131,7 +106,7 @@ export async function getTeamHero(): Promise<HeroSlide> {
     return {
       id: 0,
       title: "Staff",
-      subtitle:
+      content:
         "Meets our best teachers and staff members who are dedicated to providing quality education and support to our students.",
       image: "",
     };
@@ -192,24 +167,22 @@ export async function getStats(): Promise<Stat[]> {
     const response = await api.get("/stats");
     return response.data.data;
   } catch {
-    return stats;
+    return [];
   }
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
   const apiTeam = await fetchCNITeamMembers();
-  return apiTeam.length > 0 ? apiTeam : teamMembers;
+  return apiTeam.length > 0 ? apiTeam : [];
 }
 // about stats
 export async function getAboutStats(): Promise<AboutStat[]> {
-  return aboutStats;
+  return [];
 }
 
 export async function getStaff(): Promise<Staff[]> {
   const apiStaff = await fetchCNIStaff();
-  return apiStaff.length > 0
-    ? apiStaff.sort((a, b) => a.order - b.order)
-    : staff.sort((a, b) => a.order - b.order);
+  return apiStaff.length > 0 ? apiStaff.sort((a, b) => a.order - b.order) : [];
 }
 
 export async function getOrganizationTeamMembers(
@@ -297,10 +270,6 @@ export async function getVideos(): Promise<Video[]> {
   return videos;
 }
 
-// ── Sister Organizations ──
-export async function getOrganizations(): Promise<Organization[]> {
-  return fetchSisterOrganizations();
-}
 export async function getAboutHero(): Promise<{
   data: [
     {
@@ -313,18 +282,6 @@ export async function getAboutHero(): Promise<{
 }> {
   const response = await api.get("/about-hero");
   return response.data;
-}
-export async function getOrganizationBySlug(
-  slug: string,
-): Promise<Organization | undefined> {
-  return fetchSisterOrganizationBySlug(slug);
-}
-
-export async function getOrganizationById(
-  id: number,
-): Promise<Organization | undefined> {
-  const orgs = await fetchSisterOrganizations();
-  return orgs.find((org) => org.id === id);
 }
 
 export async function getOrganizationNews(orgId: number) {
@@ -381,25 +338,6 @@ export async function getOrganizationFaqs(orgId: number): Promise<OrgFaq[]> {
     question: item.question,
     answer: item.answer,
   }));
-}
-
-// ── Other Organizations ──
-export async function getOtherOrganizations(): Promise<OtherOrganization[]> {
-  return fetchOtherOrganizations();
-}
-
-export async function getOtherOrganizationBySlug(
-  slug: string,
-): Promise<OtherOrganization | undefined> {
-  const orgs = await fetchOtherOrganizations();
-  return orgs.find((org) => org.slug === slug);
-}
-
-export async function getOtherOrganizationById(
-  id: number,
-): Promise<OtherOrganization | undefined> {
-  const orgs = await fetchOtherOrganizations();
-  return orgs.find((org) => org.id === id);
 }
 
 // ── Blogs ──

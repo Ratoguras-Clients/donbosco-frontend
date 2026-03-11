@@ -2,7 +2,6 @@ import type { Message } from "@/lib/types";
 import api from "@/lib/axios";
 
 // Static fallback data
-import { messages as fallbackMessages } from "./messages";
 
 // API Response types — matches GET /messages/{organization_id}
 interface MessageApiItem {
@@ -51,7 +50,7 @@ export async function fetchMessages(
   organizationId: number = 1,
 ): Promise<Message[]> {
   const endpoint = `/messages/${organizationId}`;
-  const fullUrl = `${process.env.NEXT_PUBLIC_API_URL || "https://cni.ratoguras.com/api"}${endpoint}`;
+  const fullUrl = `${process.env.NEXT_PUBLIC_API_URL }${endpoint}`;
 
   try {
     const response = await api.get<MessageApiResponse>(endpoint);
@@ -69,6 +68,6 @@ export async function fetchMessages(
     } else {
       console.error(`[fetchMessages] Error:`, error.message);
     }
-    return fallbackMessages;
+    return [];
   }
 }

@@ -1,10 +1,9 @@
 // CNI Data
-export * from "./cni";
+export * from "./donbosco";
 
 // News & Notices
 
 // Media
 export * from "./media";
 
-// Organizations
-export * from "./organizations/sister";
+

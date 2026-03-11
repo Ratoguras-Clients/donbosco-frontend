@@ -3,7 +3,6 @@ import { PageHero } from "@/components/layout/PageHero";
 import {
   getMissions,
   getTeamMembers,
-  getAboutStats,
   getAboutHero,
   getCNIJourneyData,
   getStats,

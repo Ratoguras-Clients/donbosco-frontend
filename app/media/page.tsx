@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { PageHero } from "@/components/layout/PageHero";
 import { MediaOverviewContent } from "./_components/MediaOverviewContent";
 import { getPhotoAlbums, getVideos, getMediaHero } from "@/lib/api";
@@ -19,7 +20,7 @@ export default async function MediaPage() {
       <PageHero
         eyebrow="Media Center"
         title={mediaHero.title}
-        description={mediaHero.subtitle}
+        description={mediaHero.content}
         breadcrumbs={[{ label: "Media" }]}
       />
       <MediaOverviewContent

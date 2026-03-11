@@ -11,12 +11,13 @@ export const metadata = {
 };
 export default async function FaqPage() {
   const [faqs, faqHero] = await Promise.all([getFaqs(), getFaqHero()]);
+  console.log("FAQs:", faqHero);
   return (
     <>
       <PageHero
         eyebrow="Help Center"
         title={faqHero.title}
-        description={faqHero.subtitle}
+        description={faqHero.content}
         breadcrumbs={[{ label: "FAQ" }]}
       />
       <FaqContent faqs={faqs} />

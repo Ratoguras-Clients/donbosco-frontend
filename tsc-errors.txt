@@ -1,4 +1,0 @@
-﻿app/organizations/other/[slug]/news/[newsId]/page.tsx(8,38): error TS2306: File 'E:/CNI Koshi/cni-koshi/app/organizations/other/[slug]/news/[newsId]/_components/OrgNewsDetailContent.tsx' is not a module.
-app/organizations/other/[slug]/news/page.tsx(4,32): error TS2306: File 'E:/CNI Koshi/cni-koshi/app/organizations/other/[slug]/news/_components/OrgNewsContent.tsx' is not a module.
-app/organizations/other/[slug]/notices/[noticeId]/page.tsx(8,40): error TS2306: File 'E:/CNI Koshi/cni-koshi/app/organizations/other/[slug]/notices/[noticeId]/_components/OrgNoticeDetailContent.tsx' is not a module.
-app/organizations/other/[slug]/notices/page.tsx(4,35): error TS2306: File 'E:/CNI Koshi/cni-koshi/app/organizations/other/[slug]/notices/_components/OrgNoticesContent.tsx' is not a module.

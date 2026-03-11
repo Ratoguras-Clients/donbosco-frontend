@@ -14,7 +14,7 @@ import {
   Info,
   AlertCircle,
 } from "lucide-react";
-import { admissionNotice } from "@/lib/data/cni/admissions";
+import { admissionNotice } from "@/lib/data/donbosco/admissions";
 
 export function AdmissionsContent() {
   const d = admissionNotice;
