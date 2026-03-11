@@ -29,7 +29,7 @@ export interface NewsApiResponse {
  * Transform API news data to NewsItem format
  */
 function transformNewsApiToNewsItem(apiNews: NewsItem[]) {
-  return apiNews.map((item) => ({
+  return apiNews?.map((item) => ({
     id: item.id,
     title: item.title,
     summary: item.summary,
@@ -38,13 +38,13 @@ function transformNewsApiToNewsItem(apiNews: NewsItem[]) {
     date: item.date,
     category: "News",
     slug: item.slug,
-  }));
+  })) ?? [];
 }
 
 /**
  * Fetch CNI news from API (organization_id = 1)
  */
-export async function fetchCNINews():Promise<any> {
+export async function fetchCNINews(): Promise<any> {
   try {
     const url = "/news";
     const response = await api.get<NewsApiResponse>(url);
