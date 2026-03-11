@@ -15,7 +15,7 @@ export default async function TeamPage() {
       <PageHero
         eyebrow="Our Team"
         title={teamHero.title}
-        description={teamHero.subtitle}
+        description={teamHero.content}
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Team" }]}
       />
       <TeamContent staff={staff} />
