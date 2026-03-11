@@ -3,18 +3,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import type { HomeArrayMission, Mission } from "@/lib/types";
 import Preview from "../ui/Editor";
-import { useEffect, useState } from "react";
-import { getHomeMission } from "@/lib/api";
+
 type Props = {
   homeMissions: HomeArrayMission;
 };
 export function MissionSection({ homeMissions }: Props) {
-  // const [homeMissions, setHomeMissions] = useState<HomeArrayMission>();
-  // useEffect(() => {
-  //   getHomeMission().then((mission) => {
-  //     setHomeMissions(mission);
-  //   });
-  // }, []);
+
 
   return (
     <section

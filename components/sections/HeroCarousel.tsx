@@ -37,12 +37,7 @@ export function HeroCarousel({ heroSlides }: Props) {
     center: { x: 0, opacity: 1 },
     exit: (dir: number) => ({ x: dir > 0 ? "-100%" : "100%", opacity: 0 }),
   };
-  // useEffect(() => {
-  //   getHeroSlides().then((heros) => {
-  //     console.log(heros);
-  //     setHeroSlides(heros);
-  //   });
-  // }, []);
+
 
   return (
     <section
@@ -157,11 +152,10 @@ export function HeroCarousel({ heroSlides }: Props) {
               setDirection(i > current ? 1 : -1);
               setCurrent(i);
             }}
-            className={`transition-all duration-500 rounded-full ${
-              i === current
+            className={`transition-all duration-500 rounded-full ${i === current
                 ? "w-10 h-3 bg-accent"
                 : "w-3 h-3 bg-white/40 hover:bg-white/60"
-            }`}
+              }`}
           />
         ))}
       </div>

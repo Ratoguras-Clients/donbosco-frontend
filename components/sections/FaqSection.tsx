@@ -21,11 +21,10 @@ function FaqItem({ faq, isOpen, toggle, index }: FaqItemProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.5 }}
-      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-        isOpen
-          ? "bg-white border-primary/20 shadow-lg shadow-primary/5"
-          : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-md"
-      }`}
+      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen
+        ? "bg-white border-primary/20 shadow-lg shadow-primary/5"
+        : "bg-white border-gray-100 hover:border-gray-200 hover:shadow-md"
+        }`}
     >
       <button
         onClick={toggle}
@@ -33,25 +32,22 @@ function FaqItem({ faq, isOpen, toggle, index }: FaqItemProps) {
       >
         <div className="flex items-center gap-4">
           <span
-            className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-              isOpen ? "bg-primary text-white" : "bg-primary/5 text-primary"
-            }`}
+            className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-300 ${isOpen ? "bg-primary text-white" : "bg-primary/5 text-primary"
+              }`}
           >
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className={`font-semibold transition-colors duration-300 ${
-              isOpen ? "text-primary" : "text-gray-800"
-            }`}
+            className={`font-semibold transition-colors duration-300 ${isOpen ? "text-primary" : "text-gray-800"
+              }`}
           >
             {faq.question}
           </span>
         </div>
         <ChevronDown
           size={20}
-          className={`flex-shrink-0 transition-all duration-300 ${
-            isOpen ? "rotate-180 text-primary" : "text-gray-400"
-          }`}
+          className={`flex-shrink-0 transition-all duration-300 ${isOpen ? "rotate-180 text-primary" : "text-gray-400"
+            }`}
         />
       </button>
 
@@ -81,13 +77,7 @@ interface Props {
 
 export function FaqSection({ faqs }: Props) {
   const [openId, setOpenId] = useState<number | null>(1);
-  // const [faqs, setFaqs] = useState<Faq[]>([]);
-  // useEffect(() => {
 
-  //   getFaqs().then((faqs)=>{
-  //     setFaqs(faqs)
-  //   })
-  // }, [])
 
   return (
     <section
@@ -133,7 +123,7 @@ export function FaqSection({ faqs }: Props) {
 
         <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-start">
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
+            {faqs?.map((faq, i) => (
               <FaqItem
                 key={faq.id}
                 faq={faq}

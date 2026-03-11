@@ -14,14 +14,9 @@ interface Props {
 }
 
 export function MessageSection({ messages }: Props) {
-  // const [messages, setMessages] = useState<Message[]>([])
   const message = messages[0];
   if (!messages) return null;
-  // useEffect(()=>{
-  //  getMessages().then((messages)=>{
-  //   setMessages(messages)
-  //  })
-  // },[])
+
   return (
     <section
       id="message"
