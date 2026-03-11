@@ -7,45 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavDropdown, type DropdownItem } from "./NavDropdown";
 import Image from "next/image";
 import type { Organization } from "@/lib/types";
-import api from "@/lib/axios";
 
-// Fetch sister orgs from API for navbar
-async function fetchNavSisterOrgs(): Promise<Organization[]> {
-  try {
-    const response = await api.get("/organization");
-    const items = response.data;
-    return (
-      items?.organizations?.map((item: any) => ({
-        id: item.id,
-        name: item.name || item.title || "",
-        slug: item.slug || item.name?.toLowerCase().replace(/\s+/g, "-") || "",
-        logo: item.logo || "🏢",
-        color: item.color || "#1a3a5c",
-        website: item.url || item.website || undefined,
-      })) ?? []
-    );
-  } catch {
-    return [];
-  }
-}
 
-// Fetch other orgs from API for navbar
-async function fetchNavOtherOrgs(): Promise<Organization[]> {
-  try {
-    const response = await api.get("/other-organizations");
-    const items = response.data.data;
-    return items.map((item: any) => ({
-      id: item.id,
-      name: item.name || "",
-      slug: item.name?.toLowerCase().replace(/\s+/g, "-") || "",
-      logo: item.logo || "🏢",
-      color: item.color || "#1a3a5c",
-      website: item.url || undefined,
-    }));
-  } catch {
-    return [];
-  }
-}
+
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -59,15 +24,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  // Fetch live org data for dropdowns
-  useEffect(() => {
-    fetchNavSisterOrgs().then((orgs) => {
-      if (orgs.length > 0) setSisterOrgs(orgs);
-    });
-    fetchNavOtherOrgs().then((orgs) => {
-      if (orgs.length > 0) setOtherOrgs(orgs);
-    });
-  }, []);
+
 
   // Build nav structure dynamically based on fetched org data
   const navStructure = useMemo(
@@ -111,11 +68,10 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5 py-2"
           : "bg-white shadow-xl py-4"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -154,11 +110,10 @@ export function Navbar() {
             )}
             <Link
               href="/contact"
-              className={`ml-3 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                scrolled
+              className={`ml-3 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${scrolled
                   ? "bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20"
                   : "bg-white text-primary hover:bg-white/90 shadow-lg shadow-black/10"
-              }`}
+                }`}
             >
               Contact Us
             </Link>
@@ -167,9 +122,8 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              scrolled ? "text-primary" : "text-white"
-            }`}
+            className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? "text-primary" : "text-white"
+              }`}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
