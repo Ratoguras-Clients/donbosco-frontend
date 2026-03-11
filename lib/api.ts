@@ -109,6 +109,34 @@ export async function getMessageHero(): Promise<HeroSlide> {
     };
   }
 }
+export async function getFaqHero(): Promise<HeroSlide> {
+  try {
+    const data = await api.get("/faq-hero");
+    return data.data.data;
+  } catch {
+    return {
+      id: 0,
+      title: "Frequently Asked Questions",
+      subtitle:
+        "Everything you need to know about Don Bosco, membership benefits, and how to get involved.",
+      image: "",
+    };
+  }
+}
+export async function getTeamHero(): Promise<HeroSlide> {
+  try {
+    const data = await api.get("/team-hero");
+    return data.data.data;
+  } catch {
+    return {
+      id: 0,
+      title: "Staff",
+      subtitle:
+        "Meets our best teachers and staff members who are dedicated to providing quality education and support to our students.",
+      image: "",
+    };
+  }
+}
 // Updated to fetch from API
 export async function getMissions(
   organizationId: number,

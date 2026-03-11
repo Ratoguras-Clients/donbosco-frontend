@@ -1,5 +1,5 @@
 import { PageHero } from "@/components/layout/PageHero";
-import { getStaff } from "@/lib/api";
+import { getStaff, getTeamHero } from "@/lib/api";
 import { TeamContent } from "../_components/TeamContent";
 
 export const metadata = {
@@ -8,14 +8,14 @@ export const metadata = {
 };
 
 export default async function TeamPage() {
-  const staff = await getStaff();
+  const [staff, teamHero] = await Promise.all([getStaff(), getTeamHero()]);
 
   return (
     <>
       <PageHero
         eyebrow="Our Team"
-        title="Staff"
-        description="Meets our best teachers and staff members who are dedicated to providing quality education and support to our students."
+        title={teamHero.title}
+        description={teamHero.subtitle}
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Team" }]}
       />
       <TeamContent staff={staff} />

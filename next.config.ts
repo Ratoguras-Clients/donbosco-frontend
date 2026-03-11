@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cni.ratoguras.com",
+        hostname: "dbs-website.ratoguras.com",
       },
       {
         protocol: "https",
@@ -23,11 +23,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "http",
-        hostname: "donbosco.test",
+        hostname: "dbs-website.ratoguras.com",
       },
       {
         protocol: "http",
-        hostname: "backend-donbosco.test",
+        hostname: "dbs-website.ratoguras.com",
       },
     ],
   },
