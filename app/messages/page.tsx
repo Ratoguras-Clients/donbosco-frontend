@@ -21,7 +21,7 @@ export default async function MessagesPage() {
       <PageHero
         eyebrow="Leadership"
         title={messageHero.title}
-        description={messageHero.subtitle}
+        description={messageHero.content}
         breadcrumbs={[{ label: "Messages" }]}
       />
       <MessagesContent messages={messages} />

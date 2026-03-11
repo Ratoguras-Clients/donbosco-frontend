@@ -105,7 +105,7 @@ export function HeroCarousel({ heroSlides }: Props) {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="mb-10 text-lg text-white/80 sm:text-xl md:text-2xl max-w-2xl leading-relaxed px-5"
             >
-              <Preview value={slide?.subtitle} />
+              <Preview value={slide?.content} />
             </motion.p>
 
             <motion.div
