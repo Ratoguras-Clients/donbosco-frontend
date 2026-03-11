@@ -1,9 +1,9 @@
+export const dynamic = "force-dynamic";
 import { PageHero } from "@/components/layout/PageHero";
 import { getEvents } from "@/lib/api";
 import { EventsContent } from "./_components/EventsContent";
 import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Events | Don Bosco",

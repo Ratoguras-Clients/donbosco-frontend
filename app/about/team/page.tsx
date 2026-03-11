@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { PageHero } from "@/components/layout/PageHero";
 import { getStaff, getTeamHero } from "@/lib/api";
 import { TeamContent } from "../_components/TeamContent";
